@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/ischoolbar/programmer=UTF-8
+encoding//src/com/ischoolbar/programmer/controller/admin=UTF-8
+encoding//src/com/ischoolbar/programmer/controller/admin/OrderInController.java=UTF-8
+encoding//src/com/ischoolbar/programmer/controller/admin/ProductController.java=UTF-8
+encoding//src/com/ischoolbar/programmer/entity/admin/OrderIn.java=UTF-8
+encoding//src/com/ischoolbar/programmer/entity/admin/OrderInDetail.java=UTF-8
+encoding//src/config/db.properties=UTF-8
+encoding/<project>=UTF-8

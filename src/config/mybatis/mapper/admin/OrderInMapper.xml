@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ischoolbar.programmer.dao.admin.OrderInDao">
+	<!-- 进货单的添加操作 -->
+	<insert id="add" 
+	parameterType="com.ischoolbar.programmer.entity.admin.OrderIn">
+	insert into order_in(id,money,productNum,payType,status,
+	operator,remark) values(null,#{money},#{productNum},
+	#{payType},#{status},#{operator},#{remark})
+	</insert>
+	<!-- 进货单编辑 -->
+	<update id="edit"
+	parameterType="com.ischoolbar.programmer.entity.admin.OrderIn">
+	update order_in set status = #{status} where id= #{id}
+	
+	</update>
+	<!-- 进货单编辑搜索 -->
+	<select id="findList"
+	parameterType="Map"
+	resultType="com.ischoolbar.programmer.entity.admin.OrderIn">
+	select * from order_in where 1=1
+	<!-- //根据支付方式搜索 -->
+	<if test="payType!=null">
+	and payType= #{payType}
+	</if>
+	
+	<if test="status!=null">
+	and status= #{status}
+	</if>
+	
+	<if test="operator!=null">
+	and operator like '%${operator}%'
+	</if>
+	
+	<if test="minMoney!=null">
+	and money &gt;=#{minMoney}
+	</if>
+	
+	<if test="maxMoney!=null">
+	and money &lt;=#{maxMoney}
+	</if>
+	
+	<if test="offset!=null and pageSize!=null">
+	limit #{offset},#{pageSize}
+	</if>
+	</select>
+	<!-- 模糊搜索总条数 -->
+	<select id="getTotal" parameterType="Map"
+	resultType="Integer">
+	select count(*) from order_in where 1=1
+	<if test="payType!=null">
+	and payType= #{payType}
+	</if>
+	
+	<if test="status!=null">
+	and status= #{status}
+	</if>
+	
+	<if test="operator!=null">
+	and operator like '%${operator}%'
+	</if>
+	
+	<if test="minMoney!=null">
+	and money &gt;=#{minMoney}
+	</if>
+	
+	<if test="maxMoney!=null">
+	and money &lt;=#{maxMoney}
+	</if>
+	</select>
+	
+	<!-- 删除进货单信息	 -->
+	<delete id="delete" parameterType="Long">
+	delete from order_in where id = #{value}
+	</delete>
+</mapper>
